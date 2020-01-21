@@ -5,10 +5,10 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const session = require('express-session');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+const routes = require('./routes');
 
 const app = express();
+
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -17,6 +17,7 @@ app.use(logger('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser('secret code'));
 app.use(session({
   resave: false,
   saveUninitialized: false,
@@ -27,8 +28,7 @@ app.use(session({
   },
  }));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use(routes);
 
 app.use(function(req, res, next) {
   next(createError(404));
