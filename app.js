@@ -6,8 +6,10 @@ const logger = require('morgan');
 const session = require('express-session');
 
 const routes = require('./routes');
+const sequelize = require('./models').sequelize;
 
 const app = express();
+sequelize.sync();
 
 
 app.set('views', path.join(__dirname, 'views'));
