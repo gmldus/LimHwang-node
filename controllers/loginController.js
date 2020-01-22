@@ -14,6 +14,7 @@ const getLogins = async(req, res) => {
 
 const createLogins = async(req, res) => {
     try {
+        const body = req.body;
         const record = {
             login_id: body.login_id,
             login_password: body.login_password,
@@ -23,7 +24,7 @@ const createLogins = async(req, res) => {
         res.status(200).json({ data: result });
 
     } catch(error) {
-        res.status(500).json({ errorMessage: '유저정보 입력 실패' })
+        res.status(401).json({ errorMessage: '유저정보 입력 실패' })
     }
 }
 
