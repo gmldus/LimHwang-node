@@ -60,6 +60,10 @@ db.User = require('./user')(sequelize, Sequelize);
 db.Comment = require('./comment')(sequelize, Sequelize);
 db.Login = require('./login')(sequelize, Sequelize);
 
+db.Student = require('./student')(sequelize, Sequelize);
+db.Lecture = require('./lecture')(sequelize, Sequelize);
+db.Attendance = require('./attendance')(sequelize, Sequelize);
+
 db.User.hasMany(db.Comment, { foreignKey: 'commenter', sourceKey: 'id' });
 db.Comment.belongsTo(db.User, { foreignKey: 'commenter', targetKey: 'id' });
 
