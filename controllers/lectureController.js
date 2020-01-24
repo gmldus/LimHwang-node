@@ -1,15 +1,25 @@
-const Student = require('../models').Student;
 const Lecture = require('../models').Lecture;
-const Attendance = require('../models').Attendance;
 const sequelize = require('../models').sequelize;
+const { Op } = require("sequelize");
 
 const getLectures = async(req, res) => {
     try {
-        const lectureList = await Lecture.findAll({});
-        res.json({ lectureList: lectureList });
+        const body = req.body;
+        const array = body.array;
+        //const array = [210001,210004];
+        
+        const lectureList = await Lecture.findAll({
+            where: {
+                id_lectures: {
+                    [Op.or]: array,
+                }
+            },
+        });
+        res.status(200).json({ lectureList: lectureList });
 
     } catch(error) {
-        res.send(error);
+        console.log(error);
+        res.status(401).json({ errorMessage: '강의정보 불러오기 실패' })
     }
 }
 
