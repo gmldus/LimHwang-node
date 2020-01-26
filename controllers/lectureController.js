@@ -5,16 +5,18 @@ const { Op } = require("sequelize");
 const getLectures = async(req, res) => {
     try {
         const body = req.body;
-        const array = body.array;
-        //const array = [210001,210004];
+        const array = body.array.replace('[','').replace(']','');
+        
+        const realArray = array.split(", ");
         
         const lectureList = await Lecture.findAll({
             where: {
                 id_lectures: {
-                    [Op.or]: array,
+                    [Op.or]: realArray,
                 }
             },
         });
+        
         res.status(200).json({ lectureList: lectureList });
 
     } catch(error) {
