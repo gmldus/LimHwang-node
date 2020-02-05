@@ -3,12 +3,12 @@ const Attendance = require('../models').Attendance;
 const getAttendances = async(req, res) => {
     try {
         const body = req.body;
-        const studentId = body.id_students;
+        const StudentId = body.id_students;
         const LectureId = body.id_lectures;
 
         const result = await Attendance.findAll({
             where: {
-                id_students: studentId,
+                id_students: StudentId,
                 id_lectures: LectureId,
             }
         });
@@ -22,6 +22,39 @@ const getAttendances = async(req, res) => {
     }
 }
 
+const updateAttendances = async(req, res) => {
+    try {
+        const body = req.body;
+        const StudentId = body.id_students;
+        const LectureId = body.id_lectures;
+        const date = body.date;
+        const State = body.state;
+        /*const studentId = 1710001;
+        const LectureId = 210002;
+        const date = "2020-02-03";
+        const State = 0;*/
+        
+        const result = await Attendance.update(
+            { state: State },
+            {
+                where: {
+                    id_students: StudentId,
+                    id_lectures: LectureId,
+                    date: new Date(date).toISOString(),
+                }
+            }
+        );
+        
+        if(result!=0) res.status(200).json({ data: result });
+        else if(result==0) res.status(401).json({ errorMessage: '일치하는 정보가 존재하지 않습니다' })
+
+    } catch(error) {
+        console.log(error);
+        res.status(401).json({ errorMessage: '출결정보 바꾸기 실패' })
+    }
+}
+
 module.exports = {
     getAttendances,
+    updateAttendances,
 }
