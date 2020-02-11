@@ -25,6 +25,26 @@ const getLectures = async(req, res) => {
     }
 }
 
+const getTimes = async(req, res) => {
+    try {
+        const body = req.body;
+        const uuid = body.id_beacon;
+        
+        const timeList = await Lecture.findAll({
+            where: {
+                id_beacon: uuid,
+            },
+        });
+        
+        res.status(200).json({ timeList: timeList });
+
+    } catch(error) {
+        console.log(error);
+        res.status(401).json({ errorMessage: '수업 시작/종료시간 불러오기 실패' })
+    }
+}
+
 module.exports = {
     getLectures,
+    getTimes,
 }
