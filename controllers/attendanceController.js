@@ -29,13 +29,10 @@ const updateAttendances = async(req, res) => {
         const LectureId = body.id_lectures;
         const date = body.date;
         const State = body.state;
-        /*const studentId = 1710001;
-        const LectureId = 210002;
-        const date = "2020-02-03";
-        const State = 0;*/
+        const checkTime = body.check_time;
         
         const result = await Attendance.update(
-            { state: State },
+            { state: State, check_time: checkTime },
             {
                 where: {
                     id_students: StudentId,
