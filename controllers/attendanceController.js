@@ -51,7 +51,27 @@ const updateAttendances = async(req, res) => {
     }
 }
 
+const getAttCount = async(req, res) => {
+    try {
+        const body = req.body;
+        const StudentId = body.id_students;
+
+        const result = await Attendance.findAll({
+            where: {
+                id_students: StudentId,
+            }
+        });
+        
+        if(result.length!==0) res.status(200).json({ data: result });
+        else res.status(401).json({ errorMessage: '일치하는 정보가 존재하지 않습니다' })
+
+    } catch(error) {
+        console.log(error);
+        res.status(401).json({ errorMessage: '출결지각결석 횟수 불러오기 실패' })
+    }
+}
 module.exports = {
     getAttendances,
     updateAttendances,
+    getAttCount,
 }
