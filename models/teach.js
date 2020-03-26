@@ -1,13 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('proLecture',{
-        professors: {
+    return sequelize.define('teach',{
+        id_professors: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
         },
-        proLectures: {
-            type: DataTypes.STRING(45),
+        id_lectures: {
+            type: DataTypes.INTEGER,
             allowNull: false,
+            primaryKey: true,
         },
     }, {
         timestamps: false,

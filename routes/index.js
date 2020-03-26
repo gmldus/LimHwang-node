@@ -10,7 +10,7 @@ const lectures = require('./lectures');
 const attendances = require('./attendances');
 
 const professors = require('./professors');
-const proLectures = require('./proLectures');
+const teaches = require('./teaches');
 
 require('dotenv').config();
 
@@ -29,6 +29,6 @@ router.use('/lectures', lectures);
 router.use('/attendances', attendances);
 
 router.use('/professors', professors);
-router.use('/proLectures', proLectures);
+router.use('/teaches', teaches);
 
 module.exports = router;
