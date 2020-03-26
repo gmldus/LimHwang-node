@@ -9,6 +9,9 @@ const students = require('./students');
 const lectures = require('./lectures');
 const attendances = require('./attendances');
 
+const professors = require('./professors');
+const proLectures = require('./proLectures');
+
 require('dotenv').config();
 
 router.get('/', function(req, res, next) {
@@ -24,5 +27,8 @@ router.use('/comments', comments);
 router.use('/students', students);
 router.use('/lectures', lectures);
 router.use('/attendances', attendances);
+
+router.use('/professors', professors);
+router.use('/proLectures', proLectures);
 
 module.exports = router;
