@@ -1,7 +1,7 @@
 const Attendance = require('../models').Attendance;
 const sequelize = require('../models').sequelize;
 
-const getStudentList = async(req, res) => {
+const getStudentList = async(req, res) => {  // 해당 수업을 듣는 학생들의 학번 목록
     try {
         const body = req.body;
         const LectureID = body.LectureID;

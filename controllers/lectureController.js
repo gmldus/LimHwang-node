@@ -2,7 +2,7 @@ const Lecture = require('../models').Lecture;
 const sequelize = require('../models').sequelize;
 const { Op } = require("sequelize");
 
-const getLectures = async(req, res) => {
+const getLectures = async(req, res) => {  // 강의번호들로 강의정보 불러옴
     try {
         const body = req.body;
         const array = body.array.replace('[','').replace(']','');

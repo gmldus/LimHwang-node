@@ -18,16 +18,15 @@ const doLogins = async(req, res) => {
         const login_id = body.login_id;
         const login_password = body.login_password;
         
-        const studentInfo = await Student.findOne({
+        const studentInfo = await Student.findOne({  // 학생정보
             where: {
                 id_students: login_id,
                 birth: login_password,
             }
         });
         
-        const lectureNum = await Attendance.findAll({
+        const lectureNum = await Attendance.findAll({  // 학생이 듣는 강의번호(들)
 
-            //attributes: [[sequelize.literal('DISTINCT `id_students`'), 'id_students'], 'id_lectures'],
             attributes: [sequelize.literal('DISTINCT `id_students`') ,'id_lectures'],
             
             where: {

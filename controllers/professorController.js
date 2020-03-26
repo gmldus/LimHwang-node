@@ -7,14 +7,14 @@ const doLogins = async(req, res) => {
         const login_id = body.login_id;
         const login_password = body.login_password;
         
-        const professorInfo = await Professor.findOne({
+        const professorInfo = await Professor.findOne({  // 교수정보
             where: {
                 id_professors: login_id,
                 birth: login_password,
             }
         });
         
-        const professorLectureInfo = await Teach.findAll({
+        const professorLectureInfo = await Teach.findAll({  //교수가 가르치는 강의들의 강의번호(들)
             attributes: [ 'id_lectures' ],
             where: {
                 id_professors: login_id,

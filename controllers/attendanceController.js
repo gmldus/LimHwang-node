@@ -1,6 +1,6 @@
 const Attendance = require('../models').Attendance;
 
-const getAttendances = async(req, res) => {
+const getAttendances = async(req, res) => {  // 출결상태 테이블 가져옴
     try {
         const body = req.body;
         const StudentId = body.id_students;
@@ -22,7 +22,7 @@ const getAttendances = async(req, res) => {
     }
 }
 
-const updateAttendances = async(req, res) => {
+const updateAttendances = async(req, res) => {  // 출결상태 업데이트
     try {
         const body = req.body;
         const StudentId = body.id_students;
