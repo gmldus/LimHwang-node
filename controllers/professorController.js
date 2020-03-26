@@ -23,9 +23,7 @@ const doLogins = async(req, res) => {
 
         if(professorInfo){
             res.status(200).json({ professorInfo: professorInfo, professorLectureInfo: professorLectureInfo });
-            console.log(professorInfo, professorLectureInfo);
         }
-          
         else res.status(401).json({ errorMessage: '잘못된 회원정보입니다' });
 
     } catch(error) {
